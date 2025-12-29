@@ -1,0 +1,41 @@
+# ns-3 Build Artifacts
+build/
+.ns3/
+*.o
+*.a
+*.so
+*.bin
+*.exe
+
+# Large simulation outputs
+*.xml
+*.pcap
+*.tr
+
+# Phase 6 generated results (exclude data files from git, keep structure)
+phase6_results/*.csv
+phase6_logs/*.log
+
+# OS & IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Build system
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+
+# Phase 4 artifacts (don't modify)
+v2_code/
+v2_results/
+v2_visuals/

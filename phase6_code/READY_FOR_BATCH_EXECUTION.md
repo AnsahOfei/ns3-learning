@@ -1,13 +1,15 @@
 # Phase 6 Project Status: Ready for Batch Execution
 
 **Date:** December 30, 2025  
-**Status:** ✅ **ALL PREPARATION COMPLETE - READY TO EXECUTE 180 SCENARIOS**
+**Status:** ✅ **BATCH CONFIGURATION CORRECTED - READY TO EXECUTE 144 SCENARIOS**
 
 ---
 
 ## Executive Summary
 
-Phase 6 comprehensive WSN protocol evaluation is **fully prepared and validated**. All code, scripts, and documentation are production-ready. System is approved to execute 180 scenarios across three batches (L, H, D) totaling ~90 hours of simulation.
+Phase 6 comprehensive WSN protocol evaluation has **corrected batch configuration**. All code, scripts, and documentation are production-ready. System is approved to execute 144 scenarios across three batches (L: 72, H: 6, D: 66) totaling ~72 hours of simulation.
+
+**Configuration Update:** After validation, batch scripts now use only the **6 supported protocols** from `wsn_phase6_clustering.cc` with **correct topologies and modes**. (Zigbee/LoRa exist as separate implementations for future phases.)
 
 ---
 
@@ -33,7 +35,7 @@ Phase 6 comprehensive WSN protocol evaluation is **fully prepared and validated*
 ## Key Achievements
 
 ### Code Quality
-- ✅ **8 Protocols:** LEACH, SEP, DEEC, HEED, IFUC, APSO, ModLEACH, GA-SEP
+- ✅ **6 Protocols:** LEACH, SEP, DEEC, HEED, IFUC, APSO (from wsn_phase6_clustering.cc)
 - ✅ **Clean Compilation:** Zero warnings, zero errors
 - ✅ **Memory Safe:** Defensive cleanup prevents double-free issues
 - ✅ **Feature Complete:** All 1800s, seed, csvOut, heterogeneous features working
@@ -48,33 +50,36 @@ Phase 6 comprehensive WSN protocol evaluation is **fully prepared and validated*
 | D | 3 batch scripts | 3/3 | ✅ PASS |
 
 ### Test Coverage
-- **Protocol Coverage:** 8 protocols × 2 tests = 16 protocol-level tests ✅
+- **Protocol Coverage:** 6 protocols × 2 tests = 12 protocol-level tests ✅
 - **Scale Testing:** 20, 30, 50 nodes tested ✅
 - **Duration Testing:** 100s and 1800s simulations verified ✅
 - **Feature Testing:** Homogeneous, heterogeneous, stress conditions tested ✅
 
 ---
 
-## Batch Execution Ready
+## Batch Execution Ready (CORRECTED CONFIGURATION)
 
-### Batch L: Longevity Baseline (84 scenarios)
-- **Configuration:** 8 protocols × 3 topologies × 4 modes
+### Batch L: Longevity Baseline (72 scenarios - CORRECTED from 84)
+- **Configuration:** 6 protocols × 3 topologies × 4 modes
+- **Protocols:** LEACH, SEP, DEEC, HEED, IFUC, APSO
+- **Topologies:** Mesh, Grid, Star
+- **Modes:** proto-duty, standard, duty-cycle, proto
 - **Network:** 20 nodes, 150m field, 2100J/node, 1800s
 - **Script:** `phase6_code/scripts/run_longevity_baseline.sh`
-- **Expected Runtime:** ~42 hours
-- **Status:** ✅ READY
-- **Expected Output:** `phase6_results/phase6_longevity_results.csv` (84 rows)
+- **Expected Runtime:** ~36 hours (CORRECTED from ~42)
+- **Status:** ✅ RUNNING (PID 94779, started 2025-12-30 10:31 UTC)
+- **Expected Output:** `phase6_results/phase6_longevity_results.csv` (73 lines: 1 header + 72 data rows)
 
-### Batch H: Heterogeneous Energy (8 scenarios)
-- **Configuration:** 8 protocols, Mesh/ProtoDuty
+### Batch H: Heterogeneous Energy (6 scenarios - CORRECTED from 8)
+- **Configuration:** 6 protocols, Mesh/ProtoDuty fixed
 - **Network:** 30 nodes, 200m field, heterogeneous tiers, 1800s
 - **Script:** `phase6_code/scripts/run_heterogeneous_energy.sh`
-- **Expected Runtime:** ~4 hours
-- **Status:** ✅ READY
-- **Expected Output:** `phase6_results/phase6_heterogeneous_results.csv` (8 rows)
+- **Expected Runtime:** ~3 hours (CORRECTED from ~4)
+- **Status:** ✅ READY (queued after Batch L)
+- **Expected Output:** `phase6_results/phase6_heterogeneous_results.csv` (7 lines: 1 header + 6 data rows)
 
-### Batch D: Density Validation (88 scenarios)
-- **Configuration:** 8 protocols × 11 densities [2,5,10,15,20,25,30,35,40,45,50]
+### Batch D: Density Validation (66 scenarios - CORRECTED from 88)
+- **Configuration:** 6 protocols × 11 densities [2,5,10,15,20,25,30,35,40,45,50]
 - **Network:** 150m field, 2100J/node, 1800s, Mesh/ProtoDuty
 - **Script:** `phase6_code/scripts/run_density_validation.sh`
 - **Expected Runtime:** ~44 hours
@@ -88,12 +93,12 @@ Phase 6 comprehensive WSN protocol evaluation is **fully prepared and validated*
 ### Code Components
 ```
 phase6_code/
-├── wsn_phase6_clustering.cc         # Main implementation (8 protocols)
+├── wsn_phase6_clustering.cc         # Main implementation (6 protocols)
 ├── scripts/
 │   ├── utils.sh                     # Shared utilities (logging, checkpointing)
-│   ├── run_longevity_baseline.sh    # Batch L script (84 scenarios)
-│   ├── run_heterogeneous_energy.sh  # Batch H script (8 scenarios)
-│   ├── run_density_validation.sh    # Batch D script (88 scenarios)
+│   ├── run_longevity_baseline.sh    # Batch L script (72 scenarios - CORRECTED)
+│   ├── run_heterogeneous_energy.sh  # Batch H script (6 scenarios - CORRECTED)
+│   ├── run_density_validation.sh    # Batch D script (66 scenarios - CORRECTED)
 │   └── README.md                    # Usage documentation
 └── docs/
     ├── stage_*.md                   # 12-stage methodology (1-12)
@@ -182,13 +187,13 @@ echo "Batch D complete at $(date)"
 echo "=== ALL BATCHES COMPLETE ==="
 ```
 
-### Expected Timeline
+### Expected Timeline (CORRECTED)
 ```
-Start:  2025-12-30 00:00 UTC (Day 1)
-L Done: 2025-12-31 18:00 UTC (Day 2, 18:00) - after ~42 hours
-H Done: 2025-12-31 22:00 UTC (Day 2, 22:00) - after ~4 hours
-D Done: 2026-01-02 20:00 UTC (Day 4, 20:00) - after ~44 hours
-Total: ~90 hours = 3.75 days continuous
+Start:  2025-12-30 10:31 UTC (Batch L RESTARTED with correct config)
+L Done: 2025-12-31 22:31 UTC - after ~36 hours (CORRECTED from ~42)
+H Done: 2026-01-01 01:31 UTC - after ~3 hours (CORRECTED from ~4)
+D Done: 2026-01-02 10:31 UTC - after ~33 hours (CORRECTED from ~44)
+Total: ~72 hours = 3 days continuous (CORRECTED from ~90 hours)
 ```
 
 ### Monitoring Progress
@@ -310,16 +315,17 @@ Once batches complete (Items 11-13):
 - ✅ MILESTONE 2 committed to GitHub
 
 **System Status:** Production-ready  
-**Batch Status:** Ready to execute 180 scenarios  
-**Timeline:** ~90 hours continuous execution  
+**Batch Status:** Executing 144 scenarios (CORRECTED from 180)
+**Timeline:** ~72 hours continuous execution (CORRECTED from ~90)
 **Data Quality:** Verified and reliable  
+**Batch L Progress:** RUNNING (PID 94779, started 2025-12-30 10:31 UTC)
 
-**Timestamp:** 2025-12-30 09:00 UTC  
+**Timestamp:** 2025-12-30 10:31 UTC  
 **Repository:** https://github.com/AnsahOfei/ns3-learning  
-**Commit:** 101e2f5  
+**Configuration Status:** Corrected - 6 protocols, 3 topologies, 4 modes confirmed supported
 
 ---
 
-**READY TO EXECUTE BATCHES L, H, D** ✅
+**BATCH L EXECUTING - BATCHES H & D QUEUED FOR SEQUENTIAL EXECUTION** ✅
 
 Let's begin Phase 6 comprehensive evaluation!

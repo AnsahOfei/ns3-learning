@@ -1,29 +1,29 @@
 # Phase 6 Post-Batch Execution Plan
 
-**Status:** Batch L running (PID 78362, ETA ~42 hours)  
+**Status:** Batch L running (PID 94779, ETA ~36 hours)  
 **Date:** 2025-12-30  
 
 ---
 
-## Batch Execution Timeline
+## Batch Execution Timeline (CORRECTED)
 
 ```
-BATCH L (84 scenarios):
-Start:  2025-12-30 09:35 UTC
-End:    2025-12-31 15:35 UTC (+42 hours)
-Status: RUNNING (PID 78362)
+BATCH L (72 scenarios - 6 protocols × 3 topologies × 4 modes):
+Start:  2025-12-30 10:31 UTC
+End:    2025-12-31 22:31 UTC (+36 hours)
+Status: RUNNING (PID 94779)
 
-BATCH H (8 scenarios):
-Start:  2025-12-31 15:35 UTC (after L completes)
-End:    2025-12-31 19:35 UTC (+4 hours)
+BATCH H (6 scenarios - 6 protocols × 1 fixed config):
+Start:  2025-12-31 22:31 UTC (after L completes)
+End:    2026-01-01 01:31 UTC (+3 hours)
 Status: QUEUED
 
-BATCH D (88 scenarios):
-Start:  2025-12-31 19:35 UTC (after H completes)
-End:    2026-01-02 19:35 UTC (+44 hours)
+BATCH D (66 scenarios - 6 protocols × 11 densities):
+Start:  2026-01-01 01:31 UTC (after H completes)
+End:    2026-01-02 10:31 UTC (+33 hours)
 Status: QUEUED
 
-TOTAL: 180 scenarios | ~90 hours
+TOTAL: 144 scenarios | ~72 hours (CORRECTED from 180/~96 hours)
 ```
 
 ---
@@ -34,18 +34,18 @@ TOTAL: 180 scenarios | ~90 hours
 ```bash
 # Check results file
 wc -l /home/aegant/ns-allinone-3.44/ns-3.44/phase6_results/phase6_longevity_results.csv
-# Expected: 85 lines (1 header + 84 data rows)
+# Expected: 73 lines (1 header + 72 data rows) - CORRECTED from 85
 
 # Check individual scenario files
 ls /home/aegant/ns-allinone-3.44/ns-3.44/phase6_results/l_*.csv | wc -l
-# Expected: 84 CSV files
+# Expected: 72 CSV files - CORRECTED from 84
 ```
 
 ### Step 2: Commit Batch L Results (MILESTONE 3)
 ```bash
 cd /home/aegant/ns-allinone-3.44/ns-3.44
-git add phase6_results/phase6_longevity_results.csv phase6_logs/batch_l_full.log
-git commit -m "MILESTONE 3: Batch L complete - longevity baseline (84 scenarios executed, ~42hrs)"
+git add phase6_results/phase6_longevity_results.csv phase6_logs/batch_l_corrected.log
+git commit -m "MILESTONE 3: Batch L complete - longevity baseline (72 scenarios executed, ~36hrs, corrected config)"
 git push origin master
 ```
 
@@ -68,13 +68,13 @@ nohup ./run_density_validation.sh > ../../phase6_logs/batch_d_full.log 2>&1 &
 ### 1. Data Aggregation
 ```bash
 # Combine all batch results
-cat phase6_results/phase6_longevity_results.csv > phase6_results/FINAL_RESULTS_ALL_180.csv
-tail -n +2 phase6_results/phase6_heterogeneous_results.csv >> phase6_results/FINAL_RESULTS_ALL_180.csv
-tail -n +2 phase6_results/phase6_density_validation.csv >> phase6_results/FINAL_RESULTS_ALL_180.csv
+cat phase6_results/phase6_longevity_results.csv > phase6_results/FINAL_RESULTS_ALL_144.csv
+tail -n +2 phase6_results/phase6_heterogeneous_results.csv >> phase6_results/FINAL_RESULTS_ALL_144.csv
+tail -n +2 phase6_results/phase6_density_validation.csv >> phase6_results/FINAL_RESULTS_ALL_144.csv
 
 # Verify
-wc -l phase6_results/FINAL_RESULTS_ALL_180.csv
-# Expected: 181 lines (1 header + 180 data rows)
+wc -l phase6_results/FINAL_RESULTS_ALL_144.csv
+# Expected: 145 lines (1 header + 144 data rows) - CORRECTED from 181
 ```
 
 ### 2. Statistical Analysis

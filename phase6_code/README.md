@@ -79,7 +79,7 @@ phase6_logs/                          # Execution logs (auto-created)
 
 ### Phase 6B: Batch Execution
 - [ ] **Batch L** (Extended Longevity): 84 scenarios, ~42 hours
-  - Protocols: 8 (LEACH, HEED, SEP, DEEC, IFUC, APSO, Zigbee, LoRa)
+  - Protocols: 6 (LEACH, HEED, SEP, DEEC, IFUC, APSO) [Zigbee & LoRa in separate /scratch implementations]
   - Topologies: 3 (Grid, Star, Mesh)
   - Modes: 4 (Standard, Duty-Cycle, Protocol, Protocol+Duty-Cycle)
   - Controls: 20 nodes, 150m field, 2100J homogeneous, 1800s

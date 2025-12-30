@@ -25,13 +25,16 @@ cd ../
 
 ### Run Batch Execution (After Validation)
 ```bash
-# Batch L: Extended Longevity (84 scenarios, ~42 hours)
+# Batch L: Longevity Baseline (72 scenarios, ~36 hours)
+# 6 protocols × 3 topologies × 4 modes, 20 nodes, 1800s
 bash scripts/run_longevity_baseline.sh
 
-# Batch H: Heterogeneous Energy (8 scenarios, ~4 hours)
+# Batch H: Heterogeneous Energy (6 scenarios, ~3 hours)
+# 6 protocols, Mesh/ProtoDuty, 30 nodes, heterogeneous energy tiers
 bash scripts/run_heterogeneous_energy.sh
 
-# Batch D: Density Validation (88 scenarios, ~44 hours)
+# Batch D: Density Validation (66 scenarios, ~33 hours)
+# 6 protocols × 11 densities (2-50 nodes), Mesh/ProtoDuty
 bash scripts/run_density_validation.sh
 ```
 
@@ -78,26 +81,31 @@ phase6_logs/                          # Execution logs (auto-created)
 - [ ] Execute 4 validation checkpoints (Compilation, 3 smoke tests)
 
 ### Phase 6B: Batch Execution
-- [ ] **Batch L** (Extended Longevity): 84 scenarios, ~42 hours
-  - Protocols: 6 (LEACH, HEED, SEP, DEEC, IFUC, APSO) [Zigbee & LoRa in separate /scratch implementations]
-  - Topologies: 3 (Grid, Star, Mesh)
-  - Modes: 4 (Standard, Duty-Cycle, Protocol, Protocol+Duty-Cycle)
+- [ ] **Batch L** (Longevity Baseline): 72 scenarios, ~36 hours ⏳ RUNNING
+  - Protocols: 6 (LEACH, SEP, DEEC, HEED, IFUC, APSO)
+  - Topologies: 3 (Mesh, Grid, Star)
+  - Modes: 4 (proto-duty, standard, duty-cycle, proto)
   - Controls: 20 nodes, 150m field, 2100J homogeneous, 1800s
-  - Output: FND/HND timestamps, PDR degradation curves
+  - Output: PDR/FND across 6 protocols, 3 topologies, 4 modes (72 scenarios)
+  - Status: Started 2025-12-30 10:31 UTC, ETA 2025-12-31 22:31 UTC
 
-- [ ] **Batch H** (Heterogeneous Energy): 8 scenarios, ~4 hours
-  - Protocols: 8 (same)
+- [ ] **Batch H** (Heterogeneous Energy): 6 scenarios, ~3 hours
+  - Protocols: 6 (LEACH, SEP, DEEC, HEED, IFUC, APSO)
   - Topology: 1 (Mesh only)
-  - Mode: 1 (Protocol+Duty-Cycle)
+  - Mode: 1 (proto-duty)
   - Controls: 30 nodes, 200m field, 1800s
   - Energy Tiers: Tier1(1500J), Tier2(2100J), Tier3(3000J) by distance
-  - Output: Heterogeneity advantage coefficient per protocol
+  - Output: Heterogeneity advantage per protocol (6 scenarios)
+  - Status: Queued after Batch L completion
 
-- [ ] **Batch D** (Density Validation): 88 scenarios, ~44 hours
-  - Protocols: 8 (same)
+- [ ] **Batch D** (Density Validation): 66 scenarios, ~33 hours
+  - Protocols: 6 (LEACH, SEP, DEEC, HEED, IFUC, APSO)
   - Node Densities: 11 (2, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50)
   - Topology: 1 (Mesh only)
-  - Mode: 1 (Protocol+Duty-Cycle)
+  - Mode: 1 (proto-duty)
+  - Controls: 1800s, 2100J/node, 150m field
+  - Output: Scalability curves, critical density thresholds (66 scenarios)
+  - Status: Queued after Batch H completion
   - Controls: 150m field, 2100J homogeneous, 1800s
   - Output: Amortization factors, critical density per protocol
 

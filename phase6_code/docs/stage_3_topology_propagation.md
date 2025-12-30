@@ -8,7 +8,7 @@
 
 ## Abstract
 
-This stage defines the network topology models and wireless propagation characteristics used in Phase 6 evaluation. Three topology models (mesh, grid, random) are employed to test WSN protocol robustness across different spatial arrangements. The two-ray ground reflection propagation model is used for realistic LOS and NLOS scenarios in diverse deployment patterns.
+This stage defines the network topology models and wireless propagation characteristics used in Phase 6 evaluation. Three topology models (mesh, grid, star) are employed to test WSN protocol robustness across different spatial arrangements. The two-ray ground reflection propagation model is used for realistic LOS and NLOS scenarios in diverse deployment patterns. Batch L (72 scenarios: 6 protocols × 3 topologies × 4 modes) evaluates these topologies systematically.
 
 ---
 
@@ -71,27 +71,28 @@ This stage documents the three topologies selected and their impact on protocol 
 - SEP: Distance-based selection favors axis nodes
 - APSO: Grid structure aids particle movement
 
-### 2.3 Random Topology
+### 2.3 Star Topology
 
-**Description:** Random node placement in 150m × 150m field  
-**Implementation:** Uniform random distribution
+**Description:** Sink-centric star network with nodes as leaves  
+**Implementation:** Single sink at network center, all nodes within direct range
 
 **Characteristics:**
-- **Connectivity:** Variable (K varies with density)
-- **Hop count:** Random (unpredictable paths)
-- **Asymmetry:** High (uneven neighbor distribution)
-- **Deployment:** Unplanned/natural deployment
+- **Connectivity:** All nodes direct to sink (single-hop)
+- **Hop count:** Exactly 1 (all nodes → sink)
+- **Asymmetry:** Complete (sink is unique)
+- **Deployment:** Coverage-limited, controlled
 
 **Expected Properties:**
-- **Lowest PDR:** Random connectivity creates coverage gaps
-- **Highest FND:** Uneven energy distribution (some nodes isolated)
-- **Lowest throughput:** Multi-hop reliance, longer paths
-- **High collision:** Unpredictable interference
+- **Lowest PDR:** No multi-hop; nodes beyond range cannot communicate
+- **Highest FND:** Sink becomes energy bottleneck (all transmissions converge)
+- **Lowest throughput:** Single-hop limits range, causes connectivity loss at scale
+- **No interference:** Direct transmissions only
 
 **Impact on Protocols:**
-- LEACH: Cluster formation inconsistent
-- IFUC: Fuzzy parameters struggle with irregular topology
-- GA-SEP: GA can optimize irregular patterns
+- LEACH: Clustering irrelevant (single-hop forces direct transmission)
+- SEP: Distance-based weighting irrelevant (all nodes same distance to sink)
+- APSO: Particle swarm cannot optimize single-hop connectivity
+- All protocols: Degenerate to simple flood-to-sink (worst case)
 
 ---
 
@@ -264,37 +265,55 @@ Corner placement (0,0):
 ## 9. Conclusion
 
 Topology and propagation models provide comprehensive evaluation framework:
-- **Three topologies:** Test connectivity assumptions
-- **Two-ray propagation:** Realistic link qualities
-- **150m field:** Appropriate scale for 20 nodes
+- **Three topologies (Mesh/Grid/Star):** Test connectivity assumptions from best to worst case
+- **Two-ray propagation:** Realistic link qualities with ground reflection
+- **150m field (Mesh/Grid) & 200m (Star):** Appropriate scale for 20-30 nodes
 - **Sink at corner:** Realistic deployment scenario
 
-Results from Batch L will validate:
-- Topology impact on PDR/FND
-- Protocol robustness to topology changes
-- Propagation model accuracy
+Batch L (72 scenarios: 6 protocols × 3 topologies × 4 modes) will validate:
+- Topology impact on PDR/FND across all 6 protocols (LEACH, SEP, DEEC, HEED, IFUC, APSO)
+- Protocol robustness to topology changes (mesh → grid → star degradation)
+- Propagation model accuracy in simulations
+- Power mode effectiveness across different topology structures
+
+Expected findings:
+- **Mesh:** Best performance (92-98% PDR)
+- **Grid:** Moderate performance (75-85% PDR)
+- **Star:** Worst performance (40-60% PDR due to range limitations)
 
 ---
 
 ## References & Appendix
 
-*To be updated after Batch L results available*
+*To be updated after Batch L completion (2025-12-31 22:31 UTC)*
 
-**Links to Batch L Results:**
-- SEP performance across topologies: [Batch L data]
-- LEACH sensitivity to topology: [Batch L data]
-- FND comparison: [Batch L data]
+**Batch L Results Integration:**
+- SEP/LEACH performance across topologies: [Batch L data - 24 scenarios]
+- DEEC/HEED topology sensitivity: [Batch L data - 24 scenarios]
+- IFUC/APSO robustness: [Batch L data - 24 scenarios]
+- Power mode effectiveness by topology: [Batch L data - analysis]
 
 ---
 
 **Stage 3 Status:** 
 - ✅ Framework defined
-- ✅ Topology models described
-- ⏳ Results section (awaiting Batch L data)
-- ⏳ Analysis section (awaiting Batch L data)
+- ✅ Three topologies described (Mesh/Grid/Star)
+- ✅ Propagation model documented
+- ⏳ Results section (awaiting Batch L completion: 2025-12-31 22:31 UTC)
+- ⏳ Analysis & findings (awaiting Batch L data integration)
 
-**Estimated Completion:** After Batch L finishes (2025-12-31 15:35 UTC)
+**Expected Completion:** 2026-01-01 after Batch L results available
+
+**Batch L Configuration for Stage 3:**
+- Protocols tested: 6 (LEACH, SEP, DEEC, HEED, IFUC, APSO)
+- Topologies: 3 (Mesh, Grid, Star)
+- Modes: 4 (proto-duty, standard, duty-cycle, proto)
+- Total scenarios for topology analysis: 72 (6×3×4)
+- Expected runtime: ~36 hours
+- Start: 2025-12-30 10:31 UTC
+- Completion: 2025-12-31 22:31 UTC
 
 ---
 
-*Word count: 2800 words (preliminary, will expand with Batch L results)*
+*Word count: 2850 words (preliminary, expanding with Batch L results)*
+*Last updated: 2025-12-30 (documentation revision post-batch-config-correction)*

@@ -323,6 +323,15 @@ int main(int argc, char *argv[]) {
         }
     }
 
+    // Defensive cleanup: Clear containers before Simulator::Destroy() to prevent
+    // potential double-free or invalid pointer issues in EnergySourceContainer destructor.
+    // This ensures objects are dereferenced in proper order before ns-3 destructor chain.
+    devices.Clear();
+    sink.Clear();
+    sensors.Clear();
+    all.Clear();
+    sources.Clear();
+
     Simulator::Destroy();
     return 0;
 }

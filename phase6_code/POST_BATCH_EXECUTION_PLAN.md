@@ -147,7 +147,7 @@ tail -f /home/aegant/ns-allinone-3.44/ns-3.44/phase6_logs/batch_l_full.log | gre
 ## Expected Batch L Results Summary
 
 **Scenario Distribution:**
-- 8 protocols × 3 topologies × 4 modes = 84 scenarios
+- 6 protocols × 3 topologies × 4 modes = 72 scenarios
 - 20 nodes each
 - 1800s duration each
 - Random seeds (1001-1084)
@@ -159,8 +159,8 @@ tail -f /home/aegant/ns-allinone-3.44/ns-3.44/phase6_logs/batch_l_full.log | gre
 - HEED: 75-88%
 - IFUC: 65-80%
 - APSO: 40-60%
-- ModLEACH: 70-82%
-- GA-SEP: 85-95%
+- ModLEACH: Not implemented (not included in batches)
+- GA-SEP: Not implemented (not included in batches)
 
 **Expected Output Files:**
 - `phase6_longevity_results.csv` (84 rows × 21 KPIs)
@@ -172,7 +172,7 @@ tail -f /home/aegant/ns-allinone-3.44/ns-3.44/phase6_logs/batch_l_full.log | gre
 
 ## Next Actions (Sequential)
 
-1. **Monitor:** Watch Batch L progress (~42 hours)
+1. **Monitor:** Watch Batch L progress (~36 hours)
 2. **When L done:** Commit MILESTONE 3 + Start Batch H
 3. **When H done:** Commit MILESTONE 4 + Start Batch D
 4. **When D done:** Commit MILESTONE 5 + Aggregate all 180 results
@@ -185,7 +185,7 @@ tail -f /home/aegant/ns-allinone-3.44/ns-3.44/phase6_logs/batch_l_full.log | gre
 
 ## Success Criteria for All Batches
 
-✅ **Batch L:** 84 scenarios complete, all CSV files created, PDR values 40-98%
+✅ **Batch L:** 72 scenarios complete, all CSV files created, PDR values 40-98%
 ✅ **Batch H:** 8 scenarios complete, heterogeneous tier assignment verified
 ✅ **Batch D:** 88 scenarios complete, density scaling patterns visible
 

@@ -24,9 +24,13 @@
   Then `RngSeedManager::SetSeed(seed)` ensures reproducibility
 
 **Topology Breakdown:**
-1. **GRID** - Uniform regular grid layout (deterministic, no randomness)
-2. **STAR** - Sink at center, nodes on circle (deterministic, no randomness)
-3. **MESH** - Random positions (randomized, but seed-controlled for reproducibility)
+1. **GRID** - Uniform regular grid layout (deterministic positioning, controlled spacing)
+2. **STAR** - Sink at center, nodes on circle (deterministic positioning, fixed radial pattern)
+3. **MESH** - Random positions using RandomRectanglePositionAllocator (random placement, reproducible via seed parameter)
+   - **Key point:** Mesh uses random positioning, NOT static/deterministic, BUT seed-controlled for reproducibility
+   - Each node gets X,Y coordinates randomly sampled from field bounds
+   - Same seed produces identical topology across runs
+   - Different seed produces different topology each run
 
 All three are correct implementations per Phase 6 plan.
 

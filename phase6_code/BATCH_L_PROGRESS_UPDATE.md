@@ -18,14 +18,14 @@ Batch L (Longevity baseline) is executing as designed with 4 parallel ns3 proces
 | **Results CSV** | 2 lines (header + 1 data row) |
 | **Checkpoint File** | `/phase6_logs/batch_l_checkpoint.txt` |
 | **Uptime** | ~6 minutes |
-| **Expected Completion** | 2025-12-31 15:35 UTC (~42 hours from start) |
+| **Expected Completion** | 2025-12-31 22:31 UTC (~36 hours from start) |
 
-*Note: Script reports 96 scenarios because it includes test run in total count; actual batch is 84 (8 protocols × 3 topologies × 4 modes)
+*Note: Script uses correct 72 scenarios (6 protocols × 3 topologies × 4 modes)
 
 ## Execution Details
 
 **Configuration:**
-- **Protocols:** 8 (LEACH, SEP, DEEC, HEED, IFUC, APSO, ModLEACH, GA-SEP)
+- **Protocols:** 6 (LEACH, SEP, DEEC, HEED, IFUC, APSO)
 - **Topologies:** 3 (mesh, grid, random)
 - **Modes:** 4 (proto-duty, radio-off, sleep, aggregation)
 - **Nodes:** 20
@@ -46,7 +46,7 @@ Batch L (Longevity baseline) is executing as designed with 4 parallel ns3 proces
 1. **First 20% completion** (~8.4 hours): Expected early morning UTC 2025-12-30
 2. **Mid-batch checkpoint** (~50%, ~21 hours): Expected midday UTC 2025-12-31
 3. **Final 20%** (~33.6 hours): Expected afternoon UTC 2025-12-31
-4. **Completion** (~42 hours): Expected 2025-12-31 15:35 UTC
+4. **Completion** (~36 hours): Expected 2025-12-31 22:31 UTC
 
 ## Monitoring Plan
 

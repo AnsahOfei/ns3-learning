@@ -9,16 +9,16 @@
 ## Batch L Details
 
 **Batch:** Longevity Baseline  
-**Total Scenarios:** 84  
+**Total Scenarios:** 72  
 **Configuration:**
-- Protocols: 8 (LEACH, SEP, DEEC, HEED, IFUC, APSO, ModLEACH, GA-SEP)
-- Topologies: 3 (mesh, grid, random)
-- Modes: 4 (proto-duty, radio-off, sleep, aggregation)
+- Protocols: 6 (LEACH, SEP, DEEC, HEED, IFUC, APSO)
+- Topologies: 3 (mesh, grid, star)
+- Modes: 4 (proto-duty, standard, duty-cycle, proto)
 - Network: 20 nodes, 150m field, 2100J/node, 1800s each
 
-**Expected Duration:** ~42 hours  
-**Start Time:** 2025-12-30 09:31 UTC  
-**Estimated End:** 2025-12-31 15:31 UTC  
+**Expected Duration:** ~36 hours  
+**Start Time:** 2025-12-30 10:31 UTC  
+**Estimated End:** 2025-12-31 22:31 UTC  
 
 ---
 
@@ -37,8 +37,8 @@ Batch L iterates through:
 
 1. **LEACH protocol:**
    - Mesh: proto-duty, radio-off, sleep, aggregation (4)
-   - Grid: proto-duty, radio-off, sleep, aggregation (4)
-   - Random: proto-duty, radio-off, sleep, aggregation (4)
+   - Grid: proto-duty, standard, duty-cycle, proto (4)
+   - Star: proto-duty, standard, duty-cycle, proto (4)
    - Subtotal: 12 scenarios
 
 2. **SEP protocol:** 12 scenarios
@@ -46,10 +46,8 @@ Batch L iterates through:
 4. **HEED protocol:** 12 scenarios
 5. **IFUC protocol:** 12 scenarios
 6. **APSO protocol:** 12 scenarios
-7. **ModLEACH protocol:** 12 scenarios
-8. **GA-SEP protocol:** 12 scenarios
 
-**Total:** 8 × 12 = 84 scenarios
+**Total:** 6 × 12 = 72 scenarios
 
 ---
 
@@ -77,12 +75,11 @@ ls -la /home/aegant/ns-allinone-3.44/ns-3.44/phase6_results/l_* | wc -l
 
 | Time | Scenarios | Progress | Notes |
 |------|-----------|----------|-------|
-| 09:31 | 0/84 | 0% | Start |
-| ~11:31 | ~5/84 | ~6% | 1 hour mark |
-| ~15:31 | ~15/84 | ~18% | 6 hours (LEACH complete) |
-| ~19:31 | ~25/84 | ~30% | 10 hours (SEP starting) |
-| 2025-12-31 23:31 | ~50/84 | ~60% | 38 hours (halfway) |
-| 2025-12-31 15:31 | 84/84 | 100% | Complete (~42 hours) |
+| 10:31 | 0/72 | 0% | Start |
+| ~12:31 | ~5/72 | ~7% | 2 hours mark |
+| ~16:31 | ~12/72 | ~17% | 6 hours (LEACH mostly complete) |
+| ~20:31 | ~24/72 | ~33% | 10 hours (SEP/DEEC starting) |
+| 2025-12-31 22:31 | 72/72 | 100% | Complete (~36 hours) |
 
 ---
 
@@ -117,7 +114,7 @@ tail -f /home/aegant/ns-allinone-3.44/ns-3.44/phase6_logs/batch_l_full_execution
 
 ## Next Steps
 
-After Batch L completes (~42 hours):
+After Batch L completes (~36 hours):
 1. Verify all 84 scenario results in CSV
 2. Commit Batch L results (MILESTONE 3)
 3. Start Batch H (8 scenarios, ~4 hours)

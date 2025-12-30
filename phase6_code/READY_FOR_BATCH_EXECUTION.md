@@ -250,7 +250,7 @@ If interrupted, simply re-run the script:
 
 Once batches complete (Items 11-13):
 
-### Item 11: Execute Batch L (84 scenarios, ~42 hours)
+### Item 11: Execute Batch L (72 scenarios, ~36 hours)
 - Longevity baseline across all protocol/topology/mode combinations
 - Answers RQ1: How do WSN protocols degrade over 30-minute operation?
 
@@ -290,7 +290,7 @@ Once batches complete (Items 11-13):
 
 | Component | Status | Notes |
 |-----------|--------|-------|
-| Code Implementation | ✅ Complete | 8 protocols, all features |
+| Code Implementation | ✅ Complete | 6 protocols, all features |
 | Unit Testing | ✅ Complete | 4/4 checkpoints passed |
 | Integration Testing | ✅ Complete | 8/8 batch tests passed |
 | Documentation | ✅ Complete | 12-stage plan, checkpoints, guides |

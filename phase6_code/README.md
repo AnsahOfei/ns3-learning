@@ -50,7 +50,7 @@ phase6_code/                          # Isolated Phase 6 development & execution
 ├── wsn_phase6_zigbee.cc              # Zigbee protocol variant (planned)
 ├── wsn_phase6_lora.cc                # LoRa protocol variant (planned)
 ├── scripts/
-│   ├── run_longevity_baseline.sh     # Batch L: 84 scenarios × 1800s
+│   ├── run_longevity_baseline.sh     # Batch L: 72 scenarios × 1800s
 │   ├── run_heterogeneous_energy.sh   # Batch H: 8 scenarios × 1800s (heterogeneous)
 │   ├── run_density_validation.sh     # Batch D: 88 scenarios × 1800s (density sweep)
 │   └── utils.sh                      # Shared logging/checkpoint functions

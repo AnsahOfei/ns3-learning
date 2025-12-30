@@ -243,7 +243,7 @@ All tests exhibit consistent post-execution cleanup:
 ### Batch Execution Readiness: ✅ APPROVED
 
 The system is ready for:
-1. **Batch L (84 scenarios):** Longevity baseline across 8 protocols × 3 topologies × 4 modes
+1. **Batch L (72 scenarios):** Longevity baseline across 6 protocols × 3 topologies × 4 modes
 2. **Batch H (8 scenarios):** Heterogeneous energy validation
 3. **Batch D (88 scenarios):** Density scaling studies
 
@@ -266,7 +266,7 @@ All tests must use:
 **Overall Status:** ✅ **ALL 4 TESTS PASSED - READY FOR BATCH EXECUTION**
 
 **Approved for:**
-- Batch L execution (84 scenarios, ~42 hours)
+- Batch L execution (72 scenarios, ~36 hours)
 - Batch H execution (8 scenarios, ~4 hours)
 - Batch D execution (88 scenarios, ~44 hours)
 

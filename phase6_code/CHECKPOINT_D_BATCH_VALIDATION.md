@@ -20,7 +20,7 @@ All three batch execution scripts (L/H/D) have been validated with sample scenar
 ## Test 1: Batch L Sample Scenario ✅
 
 **Script:** `run_longevity_baseline.sh`  
-**Purpose:** Validate 8 protocols × 3 topologies × 4 modes batch execution
+**Purpose:** Validate 6 protocols × 3 topologies × 4 modes batch execution
 
 **Sample Test:**
 ```bash
@@ -66,7 +66,7 @@ run_scenario "sep" "mesh" "proto-duty" "20" "100" "150" "2100" "false" "9999" \
 ## Test 2: Batch H Sample Scenario ✅
 
 **Script:** `run_heterogeneous_energy.sh`  
-**Purpose:** Validate heterogeneous energy allocation across 8 protocols
+**Purpose:** Validate heterogeneous energy allocation across 6 protocols
 
 **Sample Test:**
 ```bash
@@ -202,12 +202,12 @@ All scripts implement resumable execution:
 ## Script-Specific Validation
 
 ### Batch L (Longevity Baseline)
-**84 scenarios: 8 protocols × 3 topologies × 4 modes**
+**72 scenarios: 6 protocols × 3 topologies × 4 modes**
 
 Tested configuration: `sep/mesh/proto-duty`
-- ✅ Protocol list: LEACH, SEP, DEEC, HEED, IFUC, APSO, ModLEACH, GA-SEP
-- ✅ Topology list: mesh, grid, random (3 topologies)
-- ✅ Mode list: proto-duty, radio-off, sleep, aggregation (4 modes)
+- ✅ Protocol list: LEACH, SEP, DEEC, HEED, IFUC, APSO
+- ✅ Topology list: mesh, grid, star (3 topologies)
+- ✅ Mode list: proto-duty, standard, duty-cycle, proto (4 modes)
 - ✅ Network: 20 nodes, 150m field, 2100J/node, 1800s
 - ✅ Result CSV format: `phase6_longevity_results.csv` with batch column
 
@@ -220,10 +220,10 @@ L,1,leach,mesh,proto-duty,20,1800,150,44100.00,...
 **Status:** ✅ Ready for 84-scenario execution
 
 ### Batch H (Heterogeneous Energy)
-**8 scenarios: 8 protocols × Mesh/ProtoDuty**
+**6 scenarios: 6 protocols × Mesh/ProtoDuty**
 
 Tested configuration: `sep/mesh/proto-duty` with heterogeneous flag
-- ✅ Protocol list: LEACH, SEP, DEEC, HEED, IFUC, APSO, ModLEACH, GA-SEP
+- ✅ Protocol list: LEACH, SEP, DEEC, HEED, IFUC, APSO
 - ✅ Network: 30 nodes, 200m field, heterogeneous tiers, 1800s
 - ✅ Tier assignment: Verified in per-node CSV (1500J/2100J/3000J)
 - ✅ Result CSV format: `phase6_heterogeneous_results.csv` with heterogeneous column
@@ -231,13 +231,16 @@ Tested configuration: `sep/mesh/proto-duty` with heterogeneous flag
 Expected output:
 ```
 batch,scenario_num,protocol,topology,mode,nodes,simTime,field,heterogeneous,startEnergy,...
-H,1,leach,mesh,proto-duty,30,1800,200,true,53100.00,...
+H,1,leach,mesh,proto-duty,30,1800,200,true,45000.00,...
 ```
 
-**Status:** ✅ Ready for 8-scenario execution
+**Status:** ✅ Ready for 6-scenario execution
 
 ### Batch D (Density Validation)
-**88 scenarios: 8 protocols × 11 densities**
+**66 scenarios: 6 protocols × 11 densities**
+
+Tested configuration: `sep/mesh/proto-duty` with variable density
+- ✅ Protocol list: LEACH, SEP, DEEC, HEED, IFUC, APSO
 
 Tested configuration: `apso/mesh/proto-duty` with 7 nodes
 - ✅ Protocol list: LEACH, SEP, DEEC, HEED, IFUC, APSO, ModLEACH, GA-SEP
@@ -281,7 +284,7 @@ D,1,leach,mesh,proto-duty,2,2,1800,150,4800.00,...
 
 | Batch | Scenarios | Per-scenario | Est. Runtime | Start | End |
 |-------|-----------|-------------|--------------|-------|-----|
-| L | 84 | ~30 min | ~42 hours | Day 1, 00:00 | Day 2, 18:00 |
+| L | 72 | ~30 min | ~36 hours | Day 1, 10:30 | Day 2, 22:30 |
 | H | 8 | ~30 min | ~4 hours | Day 2, 18:00 | Day 2, 22:00 |
 | D | 88 | ~30 min | ~44 hours | Day 3, 00:00 | Day 4, 20:00 |
 | **TOTAL** | **180** | **30 min** | **~90 hours** | **Day 1** | **Day 4** |
@@ -325,7 +328,7 @@ git push origin master
 ```
 
 ### Item 11-13: Execute Batches L/H/D
-1. Run Batch L: ~42 hours
+1. Run Batch L: ~36 hours
 2. Run Batch H: ~4 hours  
 3. Run Batch D: ~44 hours
 4. Collect 180 scenario results with all metrics

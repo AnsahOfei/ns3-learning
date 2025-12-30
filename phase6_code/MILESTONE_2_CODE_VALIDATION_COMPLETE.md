@@ -14,7 +14,7 @@ Phase 6 code development and comprehensive validation are **100% complete**. All
 ### What's Complete
 
 #### ✅ Code Implementation
-- **Phase6ClusteringProtocol.cc** - Main implementation with 8 protocols (LEACH, SEP, DEEC, HEED, IFUC, APSO, ModLEACH, GA-SEP)
+- **Phase6ClusteringProtocol.cc** - Main implementation with 6 protocols (LEACH, SEP, DEEC, HEED, IFUC, APSO)
 - **Memory corruption fix** - Defensive container cleanup before `Simulator::Destroy()`
 - **Full feature support:**
   - Default 1800s simulation duration
@@ -40,9 +40,9 @@ Four comprehensive checkpoints PASSED:
 
 #### ✅ Batch Execution Scripts
 Three production-ready batch scripts with shared utilities:
-- **Batch L (Longevity Baseline):** 84 scenarios (8 protocols × 3 topologies × 4 modes)
-- **Batch H (Heterogeneous Energy):** 8 scenarios (8 protocols with energy tiers)
-- **Batch D (Density Validation):** 88 scenarios (8 protocols × 11 densities [2-50 nodes])
+- **Batch L (Longevity Baseline):** 72 scenarios (6 protocols × 3 topologies × 4 modes)
+- **Batch H (Heterogeneous Energy):** 6 scenarios (6 protocols with energy tiers)
+- **Batch D (Density Validation):** 66 scenarios (6 protocols × 11 densities [2-50 nodes])
 - **Utils.sh:** Comprehensive logging, checkpointing, progress tracking
 
 #### ✅ Documentation
@@ -130,23 +130,23 @@ Three production-ready batch scripts with shared utilities:
 ## Ready for Batch Execution
 
 ### Batch L: Longevity Baseline
-- **Scenarios:** 84 (8 protocols × 3 topologies × 4 modes)
+- **Scenarios:** 72 (6 protocols × 3 topologies × 4 modes)
 - **Network:** 20 nodes, 150m field, 2100J/node, 1800s
-- **Expected Duration:** ~42 hours
+- **Expected Duration:** ~36 hours
 - **Status:** ✅ READY TO EXECUTE
 - **Expected PDR Range:** 50-98% (varies by protocol)
 - **Expected FND:** 1500-1800s (depends on protocol efficiency)
 
 ### Batch H: Heterogeneous Energy
-- **Scenarios:** 8 (8 protocols, Mesh/ProtoDuty only)
+- **Scenarios:** 6 (6 protocols, Mesh/ProtoDuty only)
 - **Network:** 30 nodes, 200m field, heterogeneous tiers, 1800s
-- **Expected Duration:** ~4 hours
+- **Expected Duration:** ~3 hours
 - **Status:** ✅ READY TO EXECUTE
 - **Expected PDR Improvement:** SEP/DEEC >20%, LEACH <5% vs homogeneous
 - **Tier Strategy:** Sink/CH 1500J, intermediate 2100J, edge 1750J
 
 ### Batch D: Density Validation
-- **Scenarios:** 88 (8 protocols × 11 densities [2-50])
+- **Scenarios:** 66 (6 protocols × 11 densities [2-50])
 - **Network:** 150m field, 2100J/node, 1800s
 - **Expected Duration:** ~44 hours
 - **Status:** ✅ READY TO EXECUTE

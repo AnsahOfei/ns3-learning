@@ -38,9 +38,9 @@
 **Status**: Complete - Available for reference  
 **Content**:
 - Three-batch factorial design philosophy (L, H, D)
-- **Batch L**: 84 scenarios (8 protocols × 3 topologies × 4 modes), 20 nodes, 1800s
-- **Batch H**: 8 scenarios (8 protocols, Mesh, Protocol+Duty-Cycle), 30 nodes, heterogeneous energy
-- **Batch D**: 88 scenarios (8 protocols × 11 densities), Mesh, Protocol+Duty-Cycle
+- **Batch L**: 72 scenarios (6 protocols × 3 topologies × 4 modes), 20 nodes, 1800s
+- **Batch H**: 6 scenarios (6 protocols, Mesh, Protocol+Duty-Cycle), 30 nodes, heterogeneous energy
+- **Batch D**: 66 scenarios (6 protocols × 11 densities), Mesh, Protocol+Duty-Cycle
 - Cross-batch control invariants (ns-3.44, SADC, hard cut-off, propagation model)
 - NetAnim exclusion rationale
 - Execution sequencing (L → H → D) & checkpoint strategy
@@ -287,7 +287,7 @@
 **Acceptance Criteria**:
 - [ ] All 3 RQs can be addressed with collected data
 - [ ] FND timestamps collected for all Batch L scenarios (84 data points)
-- [ ] Heterogeneity advantage calculated for all Batch H protocols (8 protocols × comparison)
+- [ ] Heterogeneity advantage calculated for all Batch H protocols (6 protocols × comparison)
 - [ ] Amortization factors calculated for Batch D (88 scenarios × analysis)
 - [ ] Visualization code produces publication-quality figures
 
@@ -330,7 +330,7 @@
 **Status**: Blocked until Phase 6B & Stage 10 complete  
 
 **Expected Content**:
-- Executive summary of Phase 4 (237 scenarios, 100s window, 8 protocols, 3 topologies)
+- Executive summary of Phase 4 (237 scenarios, 100s window, 6 protocols, 3 topologies)
 - Phase 6 results summary (180 scenarios, 1800s window, heterogeneity, density)
 - Longitudinal findings (100s vs. 1800s comparison across all protocols)
 - Energy Cliff generalization (does 1693s hold across topologies/protocols?)
@@ -363,7 +363,7 @@ Phase 6A: Pre-Execution (THIS WEEK)
 └─ Batch Script Testing: Verify run_*.sh can complete 1 scenario
 
 Phase 6B: Batch Execution (NEXT 2-3 WEEKS)
-├─ Batch L: 84 scenarios, 42 hours (produces RQ1 answer)
+├─ Batch L: 72 scenarios, 36 hours (produces RQ1 answer)
 ├─ Batch H: 8 scenarios, 4 hours (produces RQ2 answer)
 └─ Batch D: 88 scenarios, 44 hours (produces RQ3 answer)
 
